@@ -41,9 +41,9 @@ export const PaymentsPage: React.FC = () => {
     <div className="page-container">
       <div className="page-title-header">
         <div>
-          <h1 className="page-heading">Financials &amp; Escrow Ledger</h1>
+          <h1 className="page-heading">Financials</h1>
           <p className="page-subheading">
-            Track gross transaction volume, 15% platform commission fees, and helper payout disbursements
+            Track gross transaction volume, and helper payout disbursements
           </p>
         </div>
       </div>
@@ -53,56 +53,64 @@ export const PaymentsPage: React.FC = () => {
         <Skeleton variant="card" count={4} />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          <div className="stat-card">
-            <div className="stat-card-top">
-              <span className="stat-card-title">Gross Volume</span>
-              <div className="stat-icon-wrapper bg-blue-light">
-                <DollarSign size={18} className="text-primary-blue" />
+          <div className="bg-blue-50/50 border border-slate-200 rounded-xl p-5 shadow-xs flex flex-col justify-between gap-3">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-xs font-semibold text-slate-600 uppercase tracking-wider pr-2">Gross Volume</span>
+              <div className="p-2 rounded-lg bg-white border border-slate-200 text-blue-600 shadow-2xs flex items-center justify-center shrink-0">
+                <DollarSign size={18} />
               </div>
             </div>
-            <h2 className="stat-card-value">
-              Rs. {totalVolume.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-            </h2>
-            <span className="stat-card-subtitle">Total platform task payments</span>
+            <div>
+              <h2 className="text-xl font-bold text-slate-900">
+                Rs. {totalVolume.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+              </h2>
+              <span className="text-xs text-slate-500 mt-1 block">Total platform task payments</span>
+            </div>
           </div>
 
-          <div className="stat-card">
-            <div className="stat-card-top">
-              <span className="stat-card-title">Platform Commission</span>
-              <div className="stat-icon-wrapper bg-purple-light">
-                <CreditCard size={18} className="text-purple" />
+          <div className="bg-purple-50/50 border border-slate-200 rounded-xl p-5 shadow-xs flex flex-col justify-between gap-3">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-xs font-semibold text-slate-600 uppercase tracking-wider pr-2">Platform Commission</span>
+              <div className="p-2 rounded-lg bg-white border border-slate-200 text-purple-600 shadow-2xs flex items-center justify-center shrink-0">
+                <CreditCard size={18} />
               </div>
             </div>
-            <h2 className="stat-card-value">
-              Rs. {platformFees.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-            </h2>
-            <span className="stat-card-subtitle">15% CareDrop service revenue</span>
+            <div>
+              <h2 className="text-xl font-bold text-slate-900">
+                Rs. {platformFees.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+              </h2>
+              <span className="text-xs text-slate-500 mt-1 block invisible" aria-hidden="true">Placeholder</span>
+            </div>
           </div>
 
-          <div className="stat-card">
-            <div className="stat-card-top">
-              <span className="stat-card-title">Held in Escrow</span>
-              <div className="stat-icon-wrapper bg-amber-light">
-                <Lock size={18} className="text-warning" />
+          <div className="bg-amber-50/50 border border-slate-200 rounded-xl p-5 shadow-xs flex flex-col justify-between gap-3">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-xs font-semibold text-slate-600 uppercase tracking-wider pr-2">On Hold</span>
+              <div className="p-2 rounded-lg bg-white border border-slate-200 text-amber-600 shadow-2xs flex items-center justify-center shrink-0">
+                <Lock size={18} />
               </div>
             </div>
-            <h2 className="stat-card-value">
-              Rs. {heldEscrow.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-            </h2>
-            <span className="stat-card-subtitle">Pending active task completion</span>
+            <div>
+              <h2 className="text-xl font-bold text-slate-900">
+                Rs. {heldEscrow.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+              </h2>
+              <span className="text-xs text-slate-500 mt-1 block">Pending active task completion</span>
+            </div>
           </div>
 
-          <div className="stat-card">
-            <div className="stat-card-top">
-              <span className="stat-card-title">Disbursed Payouts</span>
-              <div className="stat-icon-wrapper bg-emerald-light">
-                <ArrowUpRight size={18} className="text-success" />
+          <div className="bg-emerald-50/50 border border-slate-200 rounded-xl p-5 shadow-xs flex flex-col justify-between gap-3">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-xs font-semibold text-slate-600 uppercase tracking-wider pr-2">Disbursed Payouts</span>
+              <div className="p-2 rounded-lg bg-white border border-slate-200 text-emerald-600 shadow-2xs flex items-center justify-center shrink-0">
+                <ArrowUpRight size={18} />
               </div>
             </div>
-            <h2 className="stat-card-value">
-              Rs. {totalDisbursed.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-            </h2>
-            <span className="stat-card-subtitle">Net earnings sent to helpers</span>
+            <div>
+              <h2 className="text-xl font-bold text-slate-900">
+                Rs. {totalDisbursed.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+              </h2>
+              <span className="text-xs text-slate-500 mt-1 block">Net earnings sent to helpers</span>
+            </div>
           </div>
         </div>
       )}
