@@ -52,7 +52,7 @@ export const PaymentsPage: React.FC = () => {
       {!isLoaded ? (
         <Skeleton variant="card" count={4} />
       ) : (
-        <div className="stat-cards-grid grid-4col mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           <div className="stat-card">
             <div className="stat-card-top">
               <span className="stat-card-title">Gross Volume</span>
@@ -108,21 +108,25 @@ export const PaymentsPage: React.FC = () => {
       )}
 
       {/* Table + Detail Panel split layout */}
-      <div className={`payments-layout${selectedTransaction ? ' payments-layout--split' : ''}`}>
-        <PaymentsTable
-          transactions={transactions}
-          isLoading={!isLoaded}
-          onSelectTransaction={handleSelectTransaction}
-          selectedTransactionId={selectedTransaction?.id}
-        />
+      <div className={`grid grid-cols-1 ${selectedTransaction ? 'lg:grid-cols-3' : 'grid-cols-1'} gap-6 items-start`}>
+        <div className={selectedTransaction ? 'lg:col-span-2' : 'w-full'}>
+          <PaymentsTable
+            transactions={transactions}
+            isLoading={!isLoaded}
+            onSelectTransaction={handleSelectTransaction}
+            selectedTransactionId={selectedTransaction?.id}
+          />
+        </div>
 
         {selectedTransaction && (
-          <TransactionDetailPanel
-            transaction={selectedTransaction}
-            onClose={() => setSelectedTransaction(null)}
-            onSimulateRefund={handleSimulateRefund}
-            onSimulatePayout={handleSimulatePayout}
-          />
+          <div className="lg:col-span-1 w-full">
+            <TransactionDetailPanel
+              transaction={selectedTransaction}
+              onClose={() => setSelectedTransaction(null)}
+              onSimulateRefund={handleSimulateRefund}
+              onSimulatePayout={handleSimulatePayout}
+            />
+          </div>
         )}
       </div>
     </div>

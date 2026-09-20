@@ -71,16 +71,16 @@ export const TicketDetailView: React.FC<TicketDetailViewProps> = ({
             <span>Go Back</span>
           </button>
         </div>
-        <div className="detail-header-top flex-between align-center mb-2">
-          <h1 className="detail-profile-name mb-0">{ticket.subject}</h1>
+        <div className="detail-header-top flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-2">
+          <h1 className="detail-profile-name mb-0 break-words">{ticket.subject}</h1>
           <StatusBadge status={ticket.status} />
         </div>
-        <div className="detail-header-sub flex-between align-center">
-          <div className="flex-align-center gap-2">
+        <div className="detail-header-sub flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
             <span className="text-xs text-muted font-semibold uppercase">Category:</span>
             <span className="category-tag-pill">{ticket.category}</span>
           </div>
-          <div className="header-id-box flex-align-center gap-2">
+          <div className="header-id-box flex items-center gap-2">
             <span className="text-xs text-muted font-semibold uppercase">Ticket ID:</span>
             <span className="code-text font-bold text-sm text-primary-blue">#{ticket.id}</span>
           </div>
@@ -92,18 +92,18 @@ export const TicketDetailView: React.FC<TicketDetailViewProps> = ({
         <div className="section-card-header mb-3">
           <h3 className="section-card-title mb-0">Submitted By</h3>
         </div>
-        <div className="submitted-by-horizontal-grid">
-          <div className="submitted-info-chip">
+        <div className="submitted-by-horizontal-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+          <div className="submitted-info-chip min-w-0 w-full">
             <User size={16} className="text-muted shrink-0" />
-            <div>
+            <div className="min-w-0">
               <span className="info-label">Full Name</span>
-              <span className="info-value font-semibold">{ticket.userName}</span>
+              <span className="info-value font-semibold break-words">{ticket.userName}</span>
             </div>
           </div>
 
-          <div className="submitted-info-chip">
+          <div className="submitted-info-chip min-w-0 w-full">
             <Mail size={16} className="text-muted shrink-0" />
-            <div>
+            <div className="min-w-0">
               <span className="info-label">App Role</span>
               <span className="info-value">
                 <span className={`status-badge-pill ${isHelper ? 'badge-info' : 'badge-primary'}`}>
@@ -113,29 +113,29 @@ export const TicketDetailView: React.FC<TicketDetailViewProps> = ({
             </div>
           </div>
 
-          <div className="submitted-info-chip">
+          <div className="submitted-info-chip min-w-0 w-full">
             <Mail size={16} className="text-muted shrink-0" />
-            <div>
+            <div className="min-w-0">
               <span className="info-label">Email Address</span>
-              <span className="info-value">
+              <span className="info-value break-all">
                 {submitter?.email || 'N/A'}
               </span>
             </div>
           </div>
 
-          <div className="submitted-info-chip">
+          <div className="submitted-info-chip min-w-0 w-full">
             <Phone size={16} className="text-muted shrink-0" />
-            <div>
+            <div className="min-w-0">
               <span className="info-label">Contact Phone</span>
-              <span className="info-value">{submitter?.phone || 'N/A'}</span>
+              <span className="info-value break-words">{submitter?.phone || 'N/A'}</span>
             </div>
           </div>
 
-          <div className="submitted-info-chip">
+          <div className="submitted-info-chip min-w-0 w-full">
             <Calendar size={16} className="text-muted shrink-0" />
-            <div>
+            <div className="min-w-0">
               <span className="info-label">Submitted On</span>
-              <span className="info-value">{ticket.createdAt}</span>
+              <span className="info-value break-words">{ticket.createdAt}</span>
             </div>
           </div>
         </div>

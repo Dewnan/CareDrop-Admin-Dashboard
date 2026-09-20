@@ -47,14 +47,14 @@ export const SupportTicketList: React.FC<SupportTicketListProps> = ({
   });
 
   return (
-    <div className="table-card-panel">
+    <div className="table-card-panel p-4 sm:p-6">
       {/* Top Toolbar: Search & Role Filters */}
-      <div className="panel-header-toolbar">
-        <div className="search-input-wrapper">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-4">
+        <div className="search-input-wrapper w-full sm:max-w-md">
           <Search size={16} className="search-icon" />
           <input
             type="text"
-            className="global-search-input"
+            className="global-search-input w-full"
             placeholder="Search tickets by ID, subject, user name..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -62,8 +62,8 @@ export const SupportTicketList: React.FC<SupportTicketListProps> = ({
         </div>
 
         {/* Filter Controls Right */}
-        <div className="filter-controls-right">
-          <div className="filter-select-wrapper">
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="filter-select-wrapper flex items-center gap-2">
             <span className="filter-select-label">Role:</span>
             <select
               id="role-filter-select"
@@ -77,7 +77,7 @@ export const SupportTicketList: React.FC<SupportTicketListProps> = ({
             </select>
           </div>
 
-          <div className="filter-select-wrapper">
+          <div className="filter-select-wrapper flex items-center gap-2">
             <span className="filter-select-label">Status:</span>
             <select
               id="status-filter-select"

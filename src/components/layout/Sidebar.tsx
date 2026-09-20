@@ -12,7 +12,8 @@ import {
   ChevronLeft,
   ChevronRight,
   User,
-  Sliders
+  Sliders,
+  X
 } from 'lucide-react';
 
 import { useAuth } from '../../services/AuthContext';
@@ -35,6 +36,8 @@ interface SidebarProps {
   openTicketsCount?: number;
   isCollapsed?: boolean;
   onToggleCollapse?: () => void;
+  isMobileOpen?: boolean;
+  onMobileClose?: () => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -43,6 +46,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
   openTicketsCount = 41,
   isCollapsed = false,
   onToggleCollapse,
+  isMobileOpen = false,
+  onMobileClose,
 }) => {
   const { user, logout } = useAuth();
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
@@ -72,26 +77,52 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <>
-      <aside className={`sidebar-drawer ${isCollapsed ? 'collapsed' : ''}`}>
-        {/* Brand Header & Single Transparent Collapse Toggle */}
-        <div className="brand-header">
-          <div className="brand-logo-box">
-            <HeartHandshake className="brand-logo-icon" size={22} />
-          </div>
-          {!isCollapsed && (
-            <div className="brand-title-box">
-              <h2 className="brand-title">CareDrop</h2>
-              <p className="brand-subtitle">Admin Console</p>
+      {/* Mobile Dark Backdrop Overlay */}
+      {isMobileOpen && (
+        <div 
+          className="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-40 lg:hidden transition-opacity"
+          onClick={onMobileClose}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Main Drawer Container */}
+      <aside className={`sidebar-drawer ${isCollapsed ? 'collapsed' : ''} ${isMobileOpen ? 'mobile-drawer-open' : ''}`}>
+        {/* Brand Header & Toggle Buttons */}
+        <div className="brand-header flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="brand-logo-box">
+              <HeartHandshake className="brand-logo-icon" size={22} />
             </div>
-          )}
+            {!isCollapsed && (
+              <div className="brand-title-box">
+                <h2 className="brand-title">CareDrop</h2>
+                <p className="brand-subtitle">Admin Console</p>
+              </div>
+            )}
+          </div>
+
+          {/* Desktop Collapse Toggle */}
           {onToggleCollapse && (
             <button
               type="button"
-              className="sidebar-toggle-transparent"
+              className="sidebar-toggle-transparent hidden lg:flex"
               onClick={onToggleCollapse}
               title={isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
             >
               {isCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
+            </button>
+          )}
+
+          {/* Mobile Drawer Close Button */}
+          {onMobileClose && (
+            <button
+              type="button"
+              className="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+              onClick={onMobileClose}
+              title="Close Navigation"
+            >
+              <X size={20} />
             </button>
           )}
         </div>

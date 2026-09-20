@@ -47,24 +47,25 @@ export const HelperTable: React.FC<HelperTableProps> = ({
   return (
     <div className="table-card-panel">
       {/* Control Toolbar */}
-      <div className="table-header-toolbar">
-        <div className="search-filter-box">
+      {/* Control bar with search and category filters */}
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-4">
+        <div className="search-filter-box w-full sm:max-w-xs">
           <Search size={16} className="table-search-icon" />
           <input
             type="text"
             placeholder="Search helpers or phone number..."
-            className="table-search-input"
+            className="table-search-input w-full"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
 
-        <div className="filter-tabs-group">
+        <div className="filter-tabs-group overflow-x-auto flex items-center gap-1 max-w-full pb-1 sm:pb-0">
           {filterTabs.map((tab) => (
             <button
               key={tab}
               type="button"
-              className={`filter-tab-btn ${filterTab === tab ? 'active' : ''}`}
+              className={`filter-tab-btn whitespace-nowrap ${filterTab === tab ? 'active' : ''}`}
               onClick={() => {
                 setFilterTab(tab);
                 setCurrentPage(1);
@@ -77,7 +78,7 @@ export const HelperTable: React.FC<HelperTableProps> = ({
       </div>
 
       {/* Main Data Table */}
-      <div className="table-wrapper">
+      <div className="table-wrapper overflow-x-auto w-full">
         <table className="data-table">
           <thead>
             <tr>

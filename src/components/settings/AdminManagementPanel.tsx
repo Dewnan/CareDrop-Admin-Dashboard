@@ -67,11 +67,11 @@ export const AdminManagementPanel: React.FC<AdminManagementPanelProps> = ({
       </div>
 
       {/* Add Admin Form */}
-      <form onSubmit={handleAdd} className="admin-add-form">
-        <div className="admin-email-input-row">
+      <form onSubmit={handleAdd} className="admin-add-form mb-6">
+        <div className="admin-email-input-row flex flex-col sm:flex-row gap-3">
           <input
             type="email"
-            className="form-input"
+            className="form-input w-full"
             placeholder="Enter admin email address..."
             value={emailInput}
             onChange={(e) => {
@@ -82,7 +82,7 @@ export const AdminManagementPanel: React.FC<AdminManagementPanelProps> = ({
           />
           <button
             type="submit"
-            className="btn-action btn-primary-blue flex-align-center gap-2"
+            className="btn-action btn-primary flex items-center justify-center gap-2 shrink-0 w-full sm:w-auto"
             disabled={isAdding || !emailInput.trim()}
           >
             {isAdding ? (
@@ -102,40 +102,45 @@ export const AdminManagementPanel: React.FC<AdminManagementPanelProps> = ({
       </form>
 
       {/* Current Admins List */}
-      <div className="admin-list">
+      <div className="admin-list flex flex-col gap-3">
         {admins.length === 0 ? (
           <p className="text-muted text-sm">No admins configured.</p>
         ) : (
           admins.map((admin) => (
-            <div key={admin.id} className="admin-list-item">
-              <div className="admin-avatar-initials">
-                {admin.name.charAt(0).toUpperCase()}
-              </div>
-              <div className="admin-list-info">
-                <div className="flex-align-center gap-2">
-                  <p className="admin-list-name">{admin.name}</p>
-                  {admin.role && (
-                    <span className="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 font-medium">
-                      {admin.role === 'superadmin' ? 'Super Admin' : 'Admin'}
-                    </span>
-                  )}
+            <div key={admin.id} className="admin-list-item flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 border rounded-lg bg-slate-50 dark:bg-slate-900/50">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="admin-avatar-initials shrink-0">
+                  {admin.name.charAt(0).toUpperCase()}
                 </div>
-                <p className="admin-list-email">{admin.email}</p>
+                <div className="admin-list-info min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <p className="admin-list-name font-semibold truncate">{admin.name}</p>
+                    {admin.role && (
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 font-medium">
+                        {admin.role === 'superadmin' ? 'Super Admin' : 'Admin'}
+                      </span>
+                    )}
+                  </div>
+                  <p className="admin-list-email text-xs text-muted truncate">{admin.email}</p>
+                </div>
               </div>
-              <span className="admin-list-date">{admin.addedAt}</span>
-              <button
-                type="button"
-                className="btn-icon btn-danger-light"
-                title={`Revoke admin access from ${admin.email}`}
-                disabled={removingId === admin.id}
-                onClick={() => handleRemove(admin.id)}
-              >
-                {removingId === admin.id ? (
-                  <Loader2 size={14} className="spinner-anim" />
-                ) : (
-                  <Trash2 size={14} />
-                )}
-              </button>
+
+              <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-200 dark:border-slate-800">
+                <span className="admin-list-date text-xs text-muted">{admin.addedAt}</span>
+                <button
+                  type="button"
+                  className="btn-icon btn-danger-light p-1.5 rounded-md text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors"
+                  title={`Revoke admin access from ${admin.email}`}
+                  disabled={removingId === admin.id}
+                  onClick={() => handleRemove(admin.id)}
+                >
+                  {removingId === admin.id ? (
+                    <Loader2 size={14} className="spinner-anim" />
+                  ) : (
+                    <Trash2 size={14} />
+                  )}
+                </button>
+              </div>
             </div>
           ))
         )}

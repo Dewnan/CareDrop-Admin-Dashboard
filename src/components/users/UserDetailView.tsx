@@ -28,23 +28,23 @@ export const UserDetailView: React.FC<UserDetailViewProps> = ({
         <span className="breadcrumb-current">{user.name}</span>
       </div>
 
-      <div className="user-detail-grid">
+      <div className="user-detail-grid grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Main User Profile Card */}
-        <div className="user-profile-main-card">
-          <div className="profile-header-top">
-            <div className="profile-title-group">
+        <div className="user-profile-main-card lg:col-span-2">
+          <div className="profile-header-top flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="profile-title-group flex items-center gap-4 min-w-0">
               <UserAvatar
                 name={user.name}
                 avatarInitials={user.avatar}
                 avatarUrl={user.avatarUrl}
-                className="profile-avatar-lg"
+                className="profile-avatar-lg shrink-0"
               />
-              <div>
-                <h2 className="profile-full-name">{user.name}</h2>
-                <p className="profile-sub-title">
+              <div className="min-w-0 flex-1">
+                <h2 className="profile-full-name truncate">{user.name}</h2>
+                <p className="profile-sub-title truncate">
                   {user.type.charAt(0).toUpperCase() + user.type.slice(1)} | Member since {user.joinedDate}
                 </p>
-                <div className="profile-badges-row">
+                <div className="profile-badges-row flex flex-wrap gap-2 mt-1">
                   <StatusBadge status={user.status} />
                   <span className="badge badge-role">{user.type}</span>
                 </div>
@@ -52,10 +52,10 @@ export const UserDetailView: React.FC<UserDetailViewProps> = ({
             </div>
 
             {/* Profile Action Buttons matching Frame 40 */}
-            <div className="profile-actions-buttons">
+            <div className="profile-actions-buttons flex items-center gap-2 shrink-0 w-full sm:w-auto">
               <button
                 type="button"
-                className={`btn-action ${user.status === 'active' ? 'btn-amber-light' : 'btn-success-light'}`}
+                className={`btn-action flex-1 sm:flex-initial justify-center ${user.status === 'active' ? 'btn-amber-light' : 'btn-success-light'}`}
                 onClick={() => onToggleStatus(user.id)}
               >
                 <UserX size={15} />
@@ -63,7 +63,7 @@ export const UserDetailView: React.FC<UserDetailViewProps> = ({
               </button>
               <button
                 type="button"
-                className="btn-action btn-red-light"
+                className="btn-action btn-red-light flex-1 sm:flex-initial justify-center"
                 onClick={() => alert(`Delete requested for user ${user.id}`)}
               >
                 <Trash2 size={15} />
@@ -75,30 +75,30 @@ export const UserDetailView: React.FC<UserDetailViewProps> = ({
           <div className="divider-line" />
 
           {/* Detailed Info Fields Table */}
-          <div className="profile-info-grid">
-            <div className="info-field-row">
+          <div className="profile-info-grid grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="info-field-row min-w-0">
               <span className="info-label">Full Name</span>
-              <span className="info-value">{user.name}</span>
+              <span className="info-value break-words">{user.name}</span>
             </div>
-            <div className="info-field-row">
+            <div className="info-field-row min-w-0">
               <span className="info-label">IC Number</span>
-              <span className="info-value">{user.icNumber || '901014-14-5678'}</span>
+              <span className="info-value break-words">{user.icNumber || '901014-14-5678'}</span>
             </div>
-            <div className="info-field-row">
+            <div className="info-field-row min-w-0">
               <span className="info-label">Phone</span>
-              <span className="info-value">{user.phone}</span>
+              <span className="info-value break-words">{user.phone}</span>
             </div>
-            <div className="info-field-row">
+            <div className="info-field-row min-w-0">
               <span className="info-label">Email</span>
-              <span className="info-value">{user.email}</span>
+              <span className="info-value break-all">{user.email}</span>
             </div>
-            <div className="info-field-row">
+            <div className="info-field-row min-w-0">
               <span className="info-label">Date of Birth</span>
-              <span className="info-value">{user.dateOfBirth || '14 Oct 1990'}</span>
+              <span className="info-value break-words">{user.dateOfBirth || '14 Oct 1990'}</span>
             </div>
-            <div className="info-field-row">
+            <div className="info-field-row min-w-0">
               <span className="info-label">Address</span>
-              <span className="info-value">{user.address || 'Jalan Ampang, Kuala Lumpur'}</span>
+              <span className="info-value break-words">{user.address || 'Jalan Ampang, Kuala Lumpur'}</span>
             </div>
           </div>
         </div>

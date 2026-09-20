@@ -45,26 +45,26 @@ export const PaymentsTable: React.FC<PaymentsTableProps> = ({
   ];
 
   return (
-    <div className="table-card-panel">
+    <div className="table-card-panel p-4 sm:p-6">
       {/* Search and filter toolbar */}
-      <div className="table-header-toolbar">
-        <div className="search-filter-box">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-4">
+        <div className="search-filter-box w-full sm:max-w-xs">
           <Search size={16} className="table-search-icon" />
           <input
             type="text"
-            className="table-search-input"
+            className="table-search-input w-full"
             placeholder="Search by Txn ID, Task ID, Patient or Helper..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
 
-        <div className="filter-tabs-group">
+        <div className="filter-tabs-group overflow-x-auto flex items-center gap-1 max-w-full pb-1 sm:pb-0">
           {filterTabs.map((t) => (
             <button
               key={t.key}
               type="button"
-              className={`filter-tab-btn ${statusFilter === t.key ? 'active' : ''}`}
+              className={`filter-tab-btn whitespace-nowrap ${statusFilter === t.key ? 'active' : ''}`}
               onClick={() => setStatusFilter(t.key)}
             >
               {t.label}
@@ -74,7 +74,7 @@ export const PaymentsTable: React.FC<PaymentsTableProps> = ({
       </div>
 
       {/* Slim 5-column table - row click opens the detail panel */}
-      <div className="table-wrapper">
+      <div className="table-wrapper overflow-x-auto w-full">
         <table className="data-table">
           <thead>
             <tr>

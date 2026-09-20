@@ -2946,3 +2946,151 @@ body {
 
 /* mt-5 spacing */
 .mt-5 { margin-top: 20px; }
+
+/* ==========================================
+   Responsive Layout & Breakpoint Enhancements
+   ========================================== */
+
+@media (max-width: 1023px) {
+  /* Navigation & Mobile Drawer Positioning */
+  .sidebar-drawer {
+    position: fixed !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 50 !important;
+    width: 260px !important;
+    transform: translateX(-100%);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  }
+
+  .sidebar-drawer.mobile-drawer-open {
+    transform: translateX(0) !important;
+  }
+
+  .admin-main-container {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  .admin-main-container.sidebar-collapsed {
+    margin-left: 0 !important;
+  }
+
+  /* Dashboard KPI & Skeleton Grids */
+  .kpi-grid-10, .skeleton-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .charts-overview-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .bottom-dashboard-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* User/Helper Split Views */
+  .user-detail-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Support Tickets & Settings */
+  .support-tickets-layout {
+    grid-template-columns: 1fr !important;
+    height: auto !important;
+  }
+
+  .settings-grid-layout {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .grid-4col {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 639px) {
+  /* Mobile Single Column Grid Defaults */
+  .kpi-grid-10, .skeleton-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .grid-4col {
+    grid-template-columns: 1fr !important;
+  }
+
+  .page-title-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .page-heading {
+    font-size: 1.25rem;
+  }
+
+  .page-subheading {
+    font-size: 0.8rem;
+  }
+
+  .table-card-panel {
+    padding: 12px !important;
+  }
+
+  .modal-container {
+    padding: 16px !important;
+    margin: 12px;
+    max-height: 88vh;
+  }
+}
+
+/* Additional Page Specific Content Responsiveness */
+.info-value, .info-label, .admin-list-email, .admin-list-name {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 1023px) {
+  .payments-layout--split {
+    grid-template-columns: 1fr !important;
+  }
+
+  .user-profile-main-card {
+    padding: 16px !important;
+  }
+}
+
+@media (max-width: 639px) {
+  .profile-header-top {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  .profile-title-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px !important;
+  }
+
+  .profile-actions-buttons {
+    width: 100% !important;
+  }
+
+  .profile-actions-buttons button {
+    flex: 1 !important;
+  }
+
+  .profile-info-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+

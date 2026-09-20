@@ -28,23 +28,23 @@ export const HelperDetailView: React.FC<HelperDetailViewProps> = ({
         <span className="breadcrumb-current">{helper.name}</span>
       </div>
 
-      <div className="user-detail-grid">
+      <div className="user-detail-grid grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Main Helper Profile Card */}
-        <div className="user-profile-main-card">
-          <div className="profile-header-top">
-            <div className="profile-title-group">
+        <div className="user-profile-main-card lg:col-span-2">
+          <div className="profile-header-top flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="profile-title-group flex items-center gap-4 min-w-0">
               <UserAvatar
                 name={helper.name}
                 avatarInitials={helper.avatar}
                 avatarUrl={helper.avatarUrl}
-                className="profile-avatar-lg avatar-teal"
+                className="profile-avatar-lg avatar-teal shrink-0"
               />
-              <div>
-                <h2 className="profile-full-name">{helper.name}</h2>
-                <p className="profile-sub-title">
+              <div className="min-w-0 flex-1">
+                <h2 className="profile-full-name truncate">{helper.name}</h2>
+                <p className="profile-sub-title truncate">
                   Caregiver | Joined {helper.submittedAt || '10 Jan 2026'}
                 </p>
-                <div className="profile-badges-row">
+                <div className="profile-badges-row flex flex-wrap gap-2 mt-1">
                   <StatusBadge status={helper.status} />
                   <span className="badge badge-role">Helper</span>
                 </div>
@@ -52,10 +52,10 @@ export const HelperDetailView: React.FC<HelperDetailViewProps> = ({
             </div>
 
             {/* Actions */}
-            <div className="profile-actions-buttons">
+            <div className="profile-actions-buttons flex items-center gap-2 shrink-0 w-full sm:w-auto">
               <button
                 type="button"
-                className={`btn-action ${helper.status === 'suspended' ? 'btn-success-light' : 'btn-amber-light'}`}
+                className={`btn-action flex-1 sm:flex-initial justify-center ${helper.status === 'suspended' ? 'btn-success-light' : 'btn-amber-light'}`}
                 onClick={() => onToggleStatus && onToggleStatus(helper.id)}
               >
                 <UserX size={15} />
@@ -63,7 +63,7 @@ export const HelperDetailView: React.FC<HelperDetailViewProps> = ({
               </button>
               <button
                 type="button"
-                className="btn-action btn-red-light"
+                className="btn-action btn-red-light flex-1 sm:flex-initial justify-center"
                 onClick={() => alert(`Delete requested for helper ${helper.id}`)}
               >
                 <Trash2 size={15} />
@@ -75,30 +75,30 @@ export const HelperDetailView: React.FC<HelperDetailViewProps> = ({
           <div className="divider-line" />
 
           {/* Detailed Info Fields Table */}
-          <div className="profile-info-grid">
-            <div className="info-field-row">
+          <div className="profile-info-grid grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="info-field-row min-w-0">
               <span className="info-label">Full Name</span>
-              <span className="info-value">{helper.name}</span>
+              <span className="info-value break-words">{helper.name}</span>
             </div>
-            <div className="info-field-row">
+            <div className="info-field-row min-w-0">
               <span className="info-label">Helper ID</span>
-              <span className="info-value">{helper.id}</span>
+              <span className="info-value break-words">{helper.id}</span>
             </div>
-            <div className="info-field-row">
+            <div className="info-field-row min-w-0">
               <span className="info-label">Phone Number</span>
-              <span className="info-value">{helper.phone}</span>
+              <span className="info-value break-words">{helper.phone}</span>
             </div>
-            <div className="info-field-row">
+            <div className="info-field-row min-w-0">
               <span className="info-label">Email Address</span>
-              <span className="info-value">{helper.email}</span>
+              <span className="info-value break-all">{helper.email}</span>
             </div>
-            <div className="info-field-row">
+            <div className="info-field-row min-w-0">
               <span className="info-label">Average Star Rating</span>
-              <span className="info-value">{helper.rating} / 5.0</span>
+              <span className="info-value break-words">{helper.rating} / 5.0</span>
             </div>
-            <div className="info-field-row">
+            <div className="info-field-row min-w-0">
               <span className="info-label">Account Joined Date</span>
-              <span className="info-value">{helper.submittedAt || '10 Jan 2026'}</span>
+              <span className="info-value break-words">{helper.submittedAt || '10 Jan 2026'}</span>
             </div>
           </div>
         </div>

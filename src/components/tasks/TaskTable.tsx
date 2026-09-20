@@ -43,26 +43,26 @@ export const TaskTable: React.FC<TaskTableProps> = ({
   );
 
   return (
-    <div className="table-card-panel">
+    <div className="table-card-panel p-4 sm:p-6">
       {/* Control Bar */}
-      <div className="table-header-toolbar">
-        <div className="search-filter-box">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-4">
+        <div className="search-filter-box w-full sm:max-w-xs">
           <Search size={16} className="table-search-icon" />
           <input
             type="text"
             placeholder="Search tasks, category, or patient..."
-            className="table-search-input"
+            className="table-search-input w-full"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
 
-        <div className="filter-tabs-group">
+        <div className="filter-tabs-group overflow-x-auto flex items-center gap-1 max-w-full pb-1 sm:pb-0">
           {filterTabs.map((tab) => (
             <button
               key={tab}
               type="button"
-              className={`filter-tab-btn ${statusFilter === tab ? 'active' : ''}`}
+              className={`filter-tab-btn whitespace-nowrap ${statusFilter === tab ? 'active' : ''}`}
               onClick={() => {
                 setStatusFilter(tab);
                 setCurrentPage(1);
@@ -75,7 +75,7 @@ export const TaskTable: React.FC<TaskTableProps> = ({
       </div>
 
       {/* Table */}
-      <div className="table-wrapper">
+      <div className="table-wrapper overflow-x-auto w-full">
         <table className="data-table">
           <thead>
             <tr>

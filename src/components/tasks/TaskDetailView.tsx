@@ -27,34 +27,33 @@ export const TaskDetailView: React.FC<TaskDetailViewProps> = ({
         <span className="breadcrumb-current">Task #{task.id}</span>
       </div>
 
-      <div className="user-detail-grid">
+      <div className="user-detail-grid grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Main Task Profile Card */}
-        <div className="user-profile-main-card">
-          <div className="profile-header-top">
-            <div className="profile-title-group">
-              <div className="profile-avatar-lg">
+        <div className="user-profile-main-card lg:col-span-2">
+          <div className="profile-header-top flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="profile-title-group flex items-center gap-4 min-w-0">
+              <div className="profile-avatar-lg shrink-0">
                 <ClipboardList size={28} />
               </div>
-              <div>
-                <h2 className="profile-full-name">{task.title}</h2>
-                <p className="profile-sub-title">
+              <div className="min-w-0 flex-1">
+                <h2 className="profile-full-name truncate">{task.title}</h2>
+                <p className="profile-sub-title truncate">
                   Category: {task.category} | Created: {task.createdAt}
                 </p>
-                <div className="profile-badges-row">
+                <div className="profile-badges-row flex flex-wrap gap-2 mt-1">
                   <StatusBadge status={task.status} />
                   <span className="badge badge-neutral">{task.priority.toUpperCase()} Priority</span>
                 </div>
               </div>
             </div>
 
-
             {/* Force Actions */}
-            <div className="profile-actions-buttons">
+            <div className="profile-actions-buttons flex items-center gap-2 shrink-0 w-full sm:w-auto">
               {task.status !== 'completed' && task.status !== 'cancelled' && (
                 <>
                   <button
                     type="button"
-                    className="btn-action btn-success-light"
+                    className="btn-action btn-success-light flex-1 sm:flex-initial justify-center"
                     onClick={() => onUpdateStatus(task.id, 'completed')}
                   >
                     <CheckCircle2 size={15} />
@@ -62,7 +61,7 @@ export const TaskDetailView: React.FC<TaskDetailViewProps> = ({
                   </button>
                   <button
                     type="button"
-                    className="btn-action btn-red-light"
+                    className="btn-action btn-red-light flex-1 sm:flex-initial justify-center"
                     onClick={() => onUpdateStatus(task.id, 'cancelled')}
                   >
                     <XCircle size={15} />
@@ -76,38 +75,38 @@ export const TaskDetailView: React.FC<TaskDetailViewProps> = ({
           <div className="divider-line" />
 
           {/* Detailed Info Fields Table */}
-          <div className="profile-info-grid">
-            <div className="info-field-row">
+          <div className="profile-info-grid grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="info-field-row min-w-0">
               <span className="info-label">Task Reference Code</span>
-              <span className="info-value">{task.id}</span>
+              <span className="info-value break-words">{task.id}</span>
             </div>
-            <div className="info-field-row">
+            <div className="info-field-row min-w-0">
               <span className="info-label">Category</span>
-              <span className="info-value">{task.category}</span>
+              <span className="info-value break-words">{task.category}</span>
             </div>
-            <div className="info-field-row">
+            <div className="info-field-row min-w-0">
               <span className="info-label">Patient Name</span>
-              <span className="info-value">{task.patientName}</span>
+              <span className="info-value break-words">{task.patientName}</span>
             </div>
-            <div className="info-field-row">
+            <div className="info-field-row min-w-0">
               <span className="info-label">Assigned Helper</span>
-              <span className="info-value">{task.helperName || 'Unassigned'}</span>
+              <span className="info-value break-words">{task.helperName || 'Unassigned'}</span>
             </div>
-            <div className="info-field-row">
+            <div className="info-field-row min-w-0">
               <span className="info-label">Pickup Location</span>
-              <span className="info-value">{task.pickupAddress}</span>
+              <span className="info-value break-words">{task.pickupAddress}</span>
             </div>
-            <div className="info-field-row">
+            <div className="info-field-row min-w-0">
               <span className="info-label">Delivery Address</span>
-              <span className="info-value">{task.deliveryAddress}</span>
+              <span className="info-value break-words">{task.deliveryAddress}</span>
             </div>
-            <div className="info-field-row">
+            <div className="info-field-row min-w-0">
               <span className="info-label">Scheduled Execution Time</span>
-              <span className="info-value">{task.scheduledTime || 'Immediate Fulfillment'}</span>
+              <span className="info-value break-words">{task.scheduledTime || 'Immediate Fulfillment'}</span>
             </div>
-            <div className="info-field-row">
+            <div className="info-field-row min-w-0">
               <span className="info-label">Total Task Price</span>
-              <span className="info-value text-primary">Rs. {task.amount}</span>
+              <span className="info-value text-primary break-words">Rs. {task.amount}</span>
             </div>
           </div>
         </div>
