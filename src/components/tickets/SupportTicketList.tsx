@@ -38,7 +38,7 @@ export const SupportTicketList: React.FC<SupportTicketListProps> = ({
     // Status filter
     let matchesStatus = true;
     if (statusFilter === 'pending') {
-      matchesStatus = t.status === 'open' || t.status === 'pending' || t.status === 'in_progress';
+      matchesStatus = t.status === 'open' || t.status === 'in_progress' || t.status === 'in_review';
     } else if (statusFilter === 'resolved') {
       matchesStatus = t.status === 'resolved' || t.status === 'closed';
     }
