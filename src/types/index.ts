@@ -131,7 +131,12 @@ export interface OverviewMetrics {
   urgentVerificationsCount: number;
   activeTasks: number;
   completedTasks: number;
+  pendingTasksCount: number;
+  cancelledTasksCount: number;
+  totalTasksCount: number;
   totalTransactions: string;
+  totalRevenueVal: number;
+  todayRevenueVal: number;
   pendingDisputes: number;
   escalatedDisputesCount: number;
   supportTickets: number;

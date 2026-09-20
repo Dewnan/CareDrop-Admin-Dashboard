@@ -68,10 +68,10 @@ export const AdminManagementPanel: React.FC<AdminManagementPanelProps> = ({
 
       {/* Add Admin Form */}
       <form onSubmit={handleAdd} className="admin-add-form mb-6">
-        <div className="admin-email-input-row flex flex-col sm:flex-row gap-3">
+        <div className="admin-email-input-row flex items-center gap-3 w-full">
           <input
             type="email"
-            className="form-input w-full"
+            className="form-input flex-1 min-w-0"
             placeholder="Enter admin email address..."
             value={emailInput}
             onChange={(e) => {
@@ -82,17 +82,17 @@ export const AdminManagementPanel: React.FC<AdminManagementPanelProps> = ({
           />
           <button
             type="submit"
-            className="btn-action btn-primary flex items-center justify-center gap-2 shrink-0 w-full sm:w-auto"
+            className="btn-primary-submit shrink-0 whitespace-nowrap px-4 py-2 text-sm flex items-center justify-center gap-2"
             disabled={isAdding || !emailInput.trim()}
           >
             {isAdding ? (
               <>
-                <Loader2 size={15} className="spinner-anim" />
+                <Loader2 size={14} className="spinner-anim" />
                 <span>Granting...</span>
               </>
             ) : (
               <>
-                <UserPlus size={15} />
+                <UserPlus size={14} />
                 <span>Grant Access</span>
               </>
             )}

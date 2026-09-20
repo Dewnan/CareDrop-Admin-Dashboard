@@ -1,12 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import { SettingsPanel } from '../components/settings/SettingsPanel';
 import { AdminManagementPanel } from '../components/settings/AdminManagementPanel';
-import { useLiveData } from '../hooks/useLiveData';
 import { dataService } from '../services/dataService';
 import { AdminRecord } from '../types';
 
 export const SettingsPage: React.FC = () => {
-  const { logs } = useLiveData();
   const [admins, setAdmins] = useState<AdminRecord[]>(() => dataService.getAdmins());
 
   const handleAddAdmin = useCallback(async (email: string) => {
@@ -23,16 +21,12 @@ export const SettingsPage: React.FC = () => {
     <div className="page-container">
       <div className="page-title-header">
         <div>
-          <h1 className="page-heading">Platform Settings &amp; Security Audit</h1>
-          <p className="page-subheading">
-            Configure platform parameters, commission fees, and review operational audit logs
-          </p>
+          <h1 className="page-heading">Platform Settings</h1>
         </div>
       </div>
 
-      <SettingsPanel auditLogs={logs} />
-
-      <div className="mt-5">
+      <div className="flex flex-col gap-6">
+        <SettingsPanel />
         <AdminManagementPanel
           admins={admins}
           onAddAdmin={handleAddAdmin}
@@ -42,3 +36,4 @@ export const SettingsPage: React.FC = () => {
     </div>
   );
 };
+
